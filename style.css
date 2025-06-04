@@ -1,0 +1,1316 @@
+/* style.css */
+
+/* Variáveis de Cores - Tema Claro (padrão) */
+:root {
+    --primary-blue: #0056b3;
+    --primary-blue-light: #007bff;
+    --dark-blue: #003366;
+    --dark-blue-gradient: #002244;
+    --accent-orange: #fd7e14;
+    --accent-orange-light: #ff913b;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-text: #343a40;
+    --light-text: #6c757d;
+    --white: #ffffff;
+    --border-color: #dee2e6;
+    --box-shadow-light: rgba(0, 0, 0, 0.08);
+    --box-shadow-medium: rgba(0, 0, 0, 0.15);
+    --box-shadow-strong: rgba(0, 0, 0, 0.25);
+}
+
+/* Variáveis de Cores - Tema Escuro */
+
+body.dark-mode {
+    /* Mantenha apenas o fundo como preto */
+    --light-gray: #000000; /* Fundo preto principal */
+    --medium-gray: #1a1a1a; /* Um tom de cinza escuro para gradiente ou secundário */
+    --dark-text: #f1f1f1; /* Texto geral claro para contraste com o fundo preto */
+    --light-text: #cccccc; /* Texto secundário mais claro para contraste */
+    --white: #000000; /* Elementos que eram brancos, agora pretos (ex: fundos de cards) */
+    --border-color: #333333; /* Bordas um pouco mais escuras, mas ainda visíveis */
+    --box-shadow-light: rgba(0, 0, 0, 0.2); /* Ajuste as sombras para o fundo escuro */
+    --box-shadow-medium: rgba(0, 0, 0, 0.3);
+    --box-shadow-strong: rgba(0, 0, 0, 0.4);
+
+    /* As linhas abaixo foram comentadas para manter as cores do tema claro */
+    /* --primary-blue: #5b9edb; */
+    /* --primary-blue-light: #83b9e8; */
+    /* --dark-blue: #a8d4ff; */
+    /* --dark-blue-gradient: #3f7ec1; */
+    /* --accent-orange: #ff913b; */
+    /* --accent-orange-light: #ffa75e; */
+}
+
+/* Reset Básico e Estilos Globais - Aplicações para todo o corpo da página */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    color: var(--dark-text); /* O texto geral agora usará a cor de dark-text */
+    background: linear-gradient(to bottom right, var(--light-gray), var(--medium-gray)); /* O fundo usará as novas variáveis */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.5s ease, color 0.5s ease; /* Transição para o tema */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3, h4 {
+    color: var(--dark-blue);
+    margin-bottom: 25px;
+    font-weight: 700;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+h1 {
+    font-size: 2.8em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+h2 {
+    font-size: 2.4em;
+    margin-bottom: 40px;
+    position: relative;
+    text-align: left;
+}
+
+/* Linha decorativa abaixo dos h2 */
+h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-blue), var(--primary-blue-light));
+    margin-top: 15px;
+    border-radius: 2px;
+    transition: background 0.5s ease; /* Transição para o tema */
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 1.05em;
+    color: var(--light-text);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--dark-blue);
+    text-decoration: underline;
+    transform: translateY(-2px);
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, var(--primary-blue), var(--dark-blue-gradient));
+    color: var(--white);
+    padding: 25px 0;
+    box-shadow: 0 4px 15px var(--box-shadow-medium);
+    transition: background 0.5s ease, box-shadow 0.5s ease, color 0.5s ease; /* Transição para o tema */
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    color: var(--white);
+    margin: 0;
+    flex-shrink: 0;
+    font-weight: 800;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin-left: 25px;
+}
+
+header nav ul li a {
+    color: var(--white);
+    font-weight: 600;
+    padding: 8px 0;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+header nav ul li a:hover {
+    color: var(--white);
+    text-decoration: none;
+}
+
+/* Underline animado no menu de navegação com degradê */
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(to right, var(--accent-orange-light), var(--white));
+    transition: width 0.3s ease-out, background 0.5s ease; /* Transição para o tema */
+    border-radius: 2px;
+}
+
+header nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Botão de alternância de tema */
+#theme-toggle {
+    background: none;
+    border: none;
+    color: var(--white); /* Cor do ícone */
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin-left: 20px;
+}
+
+#theme-toggle:hover {
+    color: var(--accent-orange-light); /* Cor do ícone ao passar o mouse */
+}
+
+
+/* Main Content Area */
+main {
+    flex-grow: 1;
+    padding: 30px 0;
+}
+
+main section {
+    padding: 50px 0;
+    margin-bottom: 30px;
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    border-radius: 12px;
+    box-shadow: 0 6px 20px var(--box-shadow-light);
+    overflow: hidden;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.5s ease; /* Transição para o tema */
+}
+
+main section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--box-shadow-medium);
+}
+
+main section:nth-of-type(even) {
+    background-color: var(--light-gray); /* Usará a nova cor de --light-gray (preto) no dark mode */
+    transition: background-color 0.5s ease; /* Transição para o tema */
+}
+
+
+/* Carrossel de Banners (Home) */
+#carousel-section {
+    padding: 0;
+    box-shadow: none;
+    margin-bottom: 40px;
+}
+
+#carousel-section .carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--box-shadow-medium);
+    height: 450px;
+    background-color: var(--medium-gray); /* Ajustado para variável */
+    transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Transição para o tema */
+}
+
+#carousel-section .carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+
+#carousel-section .carousel img.active {
+    display: block;
+    opacity: 1;
+}
+
+
+/* Notícias (Cards na Home) */
+.news-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.news-card {
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--box-shadow-light);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.5s ease; /* Transição para o tema */
+}
+
+.news-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px var(--box-shadow-medium);
+}
+
+.news-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.5s ease; /* Transição para o tema */
+}
+
+.news-card h3 {
+    margin: 20px 15px 10px;
+    font-size: 1.5em;
+    color: var(--dark-blue);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.news-card p {
+    margin: 0 15px 15px;
+    flex-grow: 1;
+    font-size: 0.95em;
+    color: var(--light-text);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.news-card a {
+    display: block;
+    background: linear-gradient(to right, var(--primary-blue), var(--dark-blue-gradient));
+    color: var(--white);
+    padding: 12px 15px;
+    text-align: center;
+    margin-top: auto;
+    border: none;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.news-card a:hover {
+    background: linear-gradient(to left, var(--primary-blue-light), var(--dark-blue));
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px var(--box-shadow-light);
+}
+
+
+/* Aplicativos (Home) */
+.app-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.app-links a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--dark-text);
+    font-weight: 600;
+    transition: transform 0.3s ease-out, color 0.3s ease-out;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.app-links a:hover {
+    transform: translateY(-8px);
+    color: var(--primary-blue);
+}
+
+.app-links img {
+    width: 110px;
+    height: 110px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px var(--box-shadow-light);
+    margin-bottom: 12px;
+    transition: box-shadow 0.3s ease-out;
+}
+
+.app-links img:hover {
+    box-shadow: 0 8px 25px var(--box-shadow-medium);
+}
+
+
+/* Tabela de Jogos (Home) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px var(--box-shadow-light);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Transição para o tema */
+}
+
+table th, table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.5s ease; /* Transição para o tema */
+}
+
+table th {
+    background: linear-gradient(to right, var(--primary-blue), var(--dark-blue-gradient));
+    color: var(--white);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.05em;
+    letter-spacing: 0.5px;
+    transition: background 0.5s ease, color 0.5s ease; /* Transição para o tema */
+}
+
+table tbody tr:nth-child(even) {
+    background-color: var(--light-gray); /* Usará a nova cor de --light-gray (preto) no dark mode */
+    transition: background-color 0.5s ease; /* Transição para o tema */
+}
+
+table tbody tr:hover {
+    background-color: var(--medium-gray); /* Usará a nova cor de --medium-gray (cinza escuro) no dark mode */
+    transition: background-color 0.2s ease;
+}
+
+
+/* Calendário Escolar (Home) */
+#calendar-section .calendar-info {
+    margin-top: 40px;
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px var(--box-shadow-light);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Transição para o tema */
+}
+
+#calendar-section .calendar-info p {
+    margin-bottom: 25px;
+    font-size: 1.1em;
+    color: var(--dark-text);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.important-dates-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.important-dates-list li {
+    background-color: var(--light-gray); /* Usará a nova cor de --light-gray (preto) no dark mode */
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--accent-orange);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    font-weight: 600;
+    color: var(--dark-text);
+    transition: all 0.3s ease;
+}
+
+.important-dates-list li:hover {
+    background-color: var(--medium-gray); /* Usará a nova cor de --medium-gray (cinza escuro) no dark mode */
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.important-dates-list li i.far.fa-calendar-alt {
+    color: var(--accent-orange);
+    font-size: 1.8em;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.important-dates-list li ul {
+    list-style: none;
+    padding-left: 25px;
+    margin-top: 8px;
+    font-weight: normal;
+}
+
+.important-dates-list li ul li {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 0.98em;
+    color: var(--light-text);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.important-dates-list li ul li i.fas.fa-check-circle {
+    color: var(--dark-blue);
+    font-size: 1.1em;
+    margin-right: 10px;
+    flex-shrink: 0;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+
+/* Projetos (Cards na página de Projetos) */
+.project-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.project-card {
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px var(--box-shadow-light);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.5s ease; /* Transição para o tema */
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px var(--box-shadow-medium);
+}
+
+.project-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.5s ease; /* Transição para o tema */
+}
+
+.project-card h3 {
+    margin: 25px 20px 15px;
+    font-size: 1.8em;
+    color: var(--dark-blue);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.project-card p {
+    margin: 0 20px 20px;
+    flex-grow: 1;
+    font-size: 1em;
+    color: var(--light-text);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.project-card a {
+    display: block;
+    background: linear-gradient(to right, var(--primary-blue), var(--dark-blue-gradient));
+    color: var(--white);
+    padding: 15px 20px;
+    text-align: center;
+    margin-top: auto;
+    border: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.project-card a:hover {
+    background: linear-gradient(to left, var(--primary-blue-light), var(--dark-blue));
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px var(--box-shadow-light);
+}
+
+
+/* Grêmio - Diretoria (página do Grêmio) */
+.board-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 35px;
+    margin-top: 35px;
+}
+
+.member-card {
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--box-shadow-light);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.5s ease, border-color 0.5s ease; /* Transição para o tema */
+}
+
+.member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px var(--box-shadow-medium);
+}
+
+.member-card img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid var(--primary-blue);
+    box-shadow: 0 0 0 2px var(--white), 0 0 0 5px var(--primary-blue); /* Ajuste a sombra de --white */
+    transition: border-color 0.5s ease, box-shadow 0.5s ease; /* Transição para o tema */
+}
+
+.member-card h4 {
+    color: var(--dark-blue);
+    margin-bottom: 8px;
+    font-size: 1.4em;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.member-card p {
+    font-size: 0.95em;
+    color: var(--light-text);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+/* Grêmio - Lista de Eventos (página do Grêmio) */
+.event-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 40px;
+}
+
+.event-list li {
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    border: none;
+    border-left: 6px solid var(--accent-orange);
+    border-radius: 8px;
+    padding: 18px 25px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    font-weight: 500;
+    color: var(--dark-text);
+    transition: all 0.3s ease;
+}
+
+.event-list li:hover {
+    background-color: var(--light-gray); /* Usará a nova cor de --light-gray (preto) no dark mode */
+    transform: translateX(8px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.event-list li i {
+    color: var(--accent-orange);
+    font-size: 1.8em;
+    margin-right: 20px;
+}
+
+
+/* Contato - Layout de Grid (página de Contato) */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    margin-top: 40px;
+}
+
+/* Formulário de Contato */
+.contact-form-container {
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px var(--box-shadow-light);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Transição para o tema */
+}
+
+.contact-form h3 {
+    margin-top: 0;
+    color: var(--dark-blue);
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--dark-text);
+    font-size: 1.05em;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.05em;
+    color: var(--dark-text);
+    background-color: #fcfcfc; /* Fundo fixo para inputs, ou usar variável */
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .form-group input[type="text"],
+body.dark-mode .form-group input[type="email"],
+body.dark-mode .form-group textarea {
+    background-color: #2a2a2a; /* Fundo escuro para inputs no dark mode */
+    color: var(--dark-text); /* Cor do texto no dark mode */
+    border-color: var(--border-color);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.btn-submit {
+    background: linear-gradient(to right, var(--primary-blue), var(--dark-blue-gradient));
+    color: var(--white);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn-submit:hover {
+    background: linear-gradient(to left, var(--primary-blue-light), var(--dark-blue));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Informações de Contato e Redes Sociais */
+.contact-info-container {
+    background-color: var(--light-gray); /* Usará a nova cor de --light-gray (preto) no dark mode */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px var(--box-shadow-light);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Transição para o tema */
+}
+
+.contact-info-container h3 {
+    margin-top: 0;
+    color: var(--dark-blue);
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.contact-info-container p {
+    margin-bottom: 18px;
+    display: flex;
+    align-items: flex-start;
+    color: var(--dark-text);
+    font-size: 1.05em;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.contact-info-container p i {
+    margin-right: 15px;
+    color: var(--primary-blue);
+    font-size: 1.4em;
+    flex-shrink: 0;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.social-icons-contact {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-icons-contact a {
+    color: var(--primary-blue);
+    font-size: 3.5em;
+    transition: all 0.3s ease;
+}
+
+.social-icons-contact a:hover {
+    color: var(--dark-blue);
+    transform: translateY(-8px) scale(1.05);
+}
+
+/* Mapa */
+.map-container {
+    margin-top: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--box-shadow-light);
+    transition: border-color 0.5s ease, box-shadow 0.5s ease; /* Transição para o tema */
+}
+
+.map-container iframe {
+    border: none;
+    display: block;
+}
+
+
+/* Sobre a Escola - Conteúdo e Estrutura */
+#about-us-section {
+    padding: 80px 0;
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    transition: background-color 0.5s ease; /* Transição para o tema */
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.about-content img.about-image {
+    max-width: 45%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--box-shadow-medium);
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-content img.about-image:hover {
+    transform: scale(1.03);
+}
+
+.about-content div {
+    flex-grow: 1;
+}
+
+.about-content h3 {
+    margin-top: 0;
+    color: var(--dark-blue);
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.about-content h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(to right, var(--accent-orange), var(--accent-orange-light));
+    border-radius: 2px;
+    transition: background 0.5s ease; /* Transição para o tema */
+}
+
+.about-content p {
+    margin-bottom: 25px;
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 1.08em;
+    color: var(--light-text);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+/* Seções de Filosofia, Infraestrutura e Programas - Mais padding e sombras */
+.philosophy-section, .infrastructure-section, .community-programs-section {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px var(--box-shadow-light);
+    transition: all 0.3s ease-out;
+}
+
+.philosophy-section:hover, .infrastructure-section:hover, .community-programs-section:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px var(--box-shadow-medium);
+}
+
+.philosophy-section h3, .infrastructure-section h3, .community-programs-section h3 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: var(--dark-blue);
+    position: relative;
+    padding-bottom: 10px;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.philosophy-section h3::after, .infrastructure-section h3::after, .community-programs-section h3::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-blue), var(--primary-blue-light));
+    margin: 15px auto 0;
+    border-radius: 2px;
+    transition: background 0.5s ease; /* Transição para o tema */
+}
+
+
+/* Missão e Valores - Melhorias nos Cards com Degrade no Hover */
+.mission-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 50px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.mv-card {
+    background-color: var(--light-gray); /* Usará a nova cor de --light-gray (preto) no dark mode */
+    border: 1px solid var(--primary-blue);
+    border-radius: 20px;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 0 10px 30px var(--box-shadow-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+/* Efeito de degradê no hover para o MV-card */
+.mv-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, var(--primary-blue-light), var(--dark-blue));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 20px;
+}
+
+.mv-card:hover::before {
+    opacity: 1;
+}
+
+.mv-card:hover {
+    color: var(--white);
+    transform: translateY(-15px);
+    box-shadow: 0 20px 50px var(--box-shadow-medium);
+}
+
+.mv-card:hover i {
+    color: var(--white);
+}
+
+.mv-card:hover h3 {
+    color: var(--white);
+}
+
+.mv-card:hover ul li {
+    color: var(--white);
+}
+
+.mv-card:hover ul li::before {
+    color: var(--white);
+}
+
+.mv-card i {
+    font-size: 4.5em;
+    color: var(--primary-blue);
+    margin-bottom: 30px;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.mv-card h3 {
+    color: var(--dark-blue);
+    margin-bottom: 25px;
+    font-size: 2em;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.mv-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.mv-card ul li {
+    margin-bottom: 12px;
+    padding-left: 35px;
+    position: relative;
+    font-size: 1.05em;
+    color: var(--dark-text);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.mv-card ul li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: var(--accent-orange);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2em;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+/* Diferenciais e Features Lists */
+.features-list {
+    gap: 25px;
+}
+
+.features-list li {
+    background-color: var(--white); /* Usará a nova cor de --white (preto) no dark mode */
+    border: none;
+    border-left: 6px solid var(--accent-orange);
+    border-radius: 10px;
+    padding: 20px 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    font-weight: 600;
+    color: var(--dark-text);
+    transition: all 0.3s ease-out;
+}
+
+.features-list li:hover {
+    transform: translateX(10px);
+    background-color: var(--light-gray); /* Usará a nova cor de --light-gray (preto) no dark mode */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.features-list li i {
+    font-size: 1.8em;
+    margin-right: 20px;
+}
+
+/* Call to Action Final */
+.final-cta {
+    text-align: center;
+    margin-top: 70px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--dark-blue);
+    line-height: 1.6;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+.button-center {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-contact {
+    display: inline-block;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    background: linear-gradient(to right, var(--primary-blue), var(--dark-blue-gradient));
+    transition: all 0.3s ease-out;
+}
+
+.btn-contact:hover {
+    background: linear-gradient(to left, var(--primary-blue-light), var(--dark-blue));
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+/* No seu style.css, adicione ou ajuste: */
+
+/* Estilo para agrupar as seções de área */
+
+.area-group {
+    background-color: var(--white); /* Agora será preto no dark mode, como os cards */
+    padding: 40px;
+    margin-bottom: 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px var(--box-shadow-medium);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.area-group h3 {
+    color: var(--dark-blue); /* Títulos das áreas (claro no dark mode) */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.area-group h3::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary-blue), var(--primary-blue-light));
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Grid para os cards de profissionais dentro de cada área */
+.professional-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Ajuste a largura mínima conforme desejar */
+    gap: 30px; /* Espaçamento entre os cards */
+    margin-top: 20px;
+}
+
+/* Estilo para cada card de profissional */
+.professional-card {
+    background-color: var(--white); /* Fundo do card (preto no dark mode) */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--box-shadow-light);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.5s ease, border-color 0.5s ease;
+    display: flex; /* Para alinhar melhor o conteúdo */
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Espaça o conteúdo */
+}
+
+.professional-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px var(--box-shadow-medium);
+}
+
+.professional-card img {
+    width: 120px; /* Tamanho da foto */
+    height: 120px; /* Tamanho da foto */
+    border-radius: 50%; /* Torna a foto redonda */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    margin-bottom: 15px;
+    border: 3px solid var(--primary-blue); /* Borda ao redor da foto */
+    box-shadow: 0 0 0 2px var(--white), 0 0 0 5px var(--primary-blue); /* Efeito de anel */
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.professional-card h4 {
+    color: var(--dark-blue); /* Nome do profissional (claro no dark mode) */
+    margin-bottom: 5px;
+    font-size: 1.3em;
+    font-weight: 600;
+    transition: color 0.5s ease;
+}
+
+.professional-card p {
+    font-size: 0.95em;
+    color: var(--light-text); /* Descrição do profissional (claro no dark mode) */
+    line-height: 1.4;
+    transition: color 0.5s ease;
+}
+
+/* Remova os estilos anteriores para .area-group ul e .area-group ul li se não for mais usar listas simples */
+.area-group ul {
+    display: none; /* Isso esconde qualquer lista que não seja de cards */
+}
+
+
+/* Footer - Rodapé do portal */
+footer {
+    background: linear-gradient(to right, var(--dark-blue-gradient), var(--dark-blue));
+    color: var(--white);
+    padding: 40px 0;
+    text-align: center;
+    margin-top: 60px;
+    box-shadow: 0 -4px 15px var(--box-shadow-medium);
+    transition: background 0.5s ease, box-shadow 0.5s ease, color 0.5s ease; /* Transição para o tema */
+}
+
+footer .social-links a {
+    color: var(--white);
+    margin: 0 15px;
+    font-size: 1.8em;
+    transition: all 0.3s ease;
+}
+
+footer .social-links a:hover {
+    color: var(--primary-blue-light);
+    transform: scale(1.1);
+}
+footer p {
+    color: var(--white);
+    margin-top: 20px;
+    font-size: 0.95em;
+    transition: color 0.5s ease; /* Transição para o tema */
+}
+
+/* Media Queries para Responsividade - Ajustes para telas menores */
+@media (max-width: 992px) {
+    h1 { font-size: 2.2em; }
+    h2 { font-size: 2em; margin-bottom: 30px;}
+    h2::after { margin-top: 10px; width: 60px;}
+    h3 { font-size: 1.6em; }
+    h4 { font-size: 1.3em; }
+
+    header h1 { font-size: 2.2em; }
+    header nav ul li { margin-left: 15px; }
+    #theme-toggle { margin-left: 10px; }
+
+
+    #carousel-section .carousel { height: 350px; }
+    .news-cards, .project-cards, .board-members { gap: 25px; }
+    .news-card img { height: 180px; }
+    .app-links { gap: 20px; }
+    .app-links img { width: 90px; height: 90px; }
+    .app-links a { font-size: 1em; }
+    table th, table td { padding: 12px 15px; }
+    .project-card img { height: 220px; }
+    .member-card img { width: 110px; height: 110px; }
+    .event-list li { padding: 15px 20px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 30px;}
+    .contact-form-container, .contact-info-container { padding: 30px; }
+    .social-icons-contact a { font-size: 3em; }
+
+    #about-us-section { padding: 60px 0; }
+    .about-content { flex-direction: column; gap: 30px; margin-bottom: 40px;}
+    .about-content img.about-image { max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px var(--box-shadow-medium); }
+    .about-content h3 { font-size: 1.8em; margin-bottom: 20px; }
+    .about-content h3::after { width: 50px; height: 3px; }
+    .about-content p { font-size: 1em; line-height: 1.6;}
+    .philosophy-section, .infrastructure-section, .community-programs-section { padding: 30px; margin-top: 40px; margin-bottom: 40px;}
+    .philosophy-section h3, .infrastructure-section h3, .community-programs-section h3 { font-size: 2em; margin-bottom: 30px; }
+    .philosophy-section h3::after, .infrastructure-section h3::after, .community-programs-section h3::after { width: 80px; margin-top: 10px;}
+    .mission-values { gap: 30px; margin-top: 40px; margin-bottom: 40px; }
+    .mv-card { padding: 30px; border-radius: 15px; }
+    .mv-card i { font-size: 4em; margin-bottom: 20px;}
+    .mv-card h3 { font-size: 1.6em; margin-bottom: 15px;}
+    .mv-card ul li { font-size: 0.95em; padding-left: 30px;}
+    .mv-card ul li::before { font-size: 1.1em; }
+    .features-list { gap: 15px; }
+    .features-list li { padding: 15px 20px; }
+    .features-list li i { font-size: 1.4em; margin-right: 15px;}
+    .final-cta { font-size: 1.2em; margin-top: 50px; }
+    .btn-contact { padding: 15px 30px; font-size: 1.1em; }
+    footer { padding: 30px 0; margin-top: 50px; }
+    footer .social-links a { font-size: 1.6em; margin: 0 10px; }
+}
+
+@media (max-width: 768px) {
+    header .container { flex-direction: column; text-align: center; }
+    header nav ul { margin-top: 15px; }
+    header nav ul li { margin: 0 10px; margin-bottom: 5px; }
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.6em; text-align: center; }
+    h2::after { margin: 10px auto 0; }
+
+    #carousel-section .carousel { height: 280px; }
+    .news-card img { height: 160px; }
+    .app-links { gap: 15px; }
+    .app-links img { width: 70px; height: 70px; }
+    .app-links a span { font-size: 0.85em; }
+
+    /* Tabela Responsiva (conforme já implementado) */
+    table, thead, tbody, th, td, tr { display: block; }
+    table thead { display: none; }
+    table tr { margin-bottom: 10px; border: 1px solid var(--border-color); border-radius: 8px; background-color: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    table td { border: none; position: relative; padding-left: 50%; text-align: right; }
+    table td:before { content: attr(data-label); position: absolute; left: 0; width: 45%; padding-left: 15px; font-weight: bold; text-align: left; color: var(--primary-blue); }
+
+    .important-dates-list li { flex-direction: column; align-items: flex-start; }
+    .important-dates-list li i.far.fa-calendar-alt { margin-bottom: 10px; }
+    .important-dates-list li ul { padding-left: 0; width: 100%; }
+
+    /* Desativa efeitos de hover que podem ser problemáticos em touch */
+    main section:hover,
+    .news-card:hover,
+    .app-links a:hover,
+    .app-links img:hover,
+    .project-card:hover,
+    .member-card:hover,
+    .event-list li:hover,
+    .btn-submit:hover,
+    .social-icons-contact a:hover,
+    .about-content img.about-image:hover,
+    .philosophy-section:hover, .infrastructure-section:hover, .community-programs-section:hover,
+    .mv-card:hover,
+    .mv-card::before,
+    .btn-contact:hover,
+    .features-list li:hover {
+        transform: none;
+        box-shadow: initial;
+        background-color: initial;
+        color: initial;
+        opacity: initial;
+    }
+    .mv-card:hover::before { opacity: 0; }
+    .mv-card, .mv-card i, .mv-card h3, .mv-card ul li, .mv-card ul li::before {
+        transition: none !important;
+    }
+
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 1.6em; }
+    h2 { font-size: 1.4em; margin-bottom: 25px; }
+    h3 { font-size: 1.4em; }
+    h4 { font-size: 1.2em; }
+    #carousel-section .carousel { height: 200px; }
+    .app-links { gap: 10px; }
+    .app-links img { width: 60px; height: 60px; }
+    .app-links a span { font-size: 0.75em; }
+    .member-card img { width: 90px; height: 90px; }
+    .social-icons-contact a { font-size: 2.5em; }
+    .btn-contact { padding: 12px 25px; font-size: 1em; }
+
+    /* ADICIONADO: Força 1 coluna para notícias e outros cards apenas em telas muito pequenas */
+    .news-cards, .project-cards, .board-members { grid-template-columns: 1fr; }
+}
